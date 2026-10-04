@@ -1,51 +1,48 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Rekod Nikah</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; }
-        .container { max-width: 600px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
-        h2 { color: #007bff; text-align: center; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { background-color: #28a745; color: white; padding: 12px; border: none; width: 100%; border-radius: 4px; font-size: 16px; cursor: pointer; }
-        button:hover { background-color: #218838; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Sistem Nikah Anak Mukim</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>html,body{overflow-x:hidden;width:100%;position:relative;margin:0;padding:0;background:#f0f2f5}body{font-family:'Segoe UI',sans-serif;color:#333}.header{background:#8B0000;color:#fff;padding:25px 15px;text-align:center;font-weight:bold;font-size:1.4em;border-bottom:5px solid #ffcc00}.container{padding:20px;max-width:100%;margin:15px;background:#fff;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,.1);box-sizing:border-box}.form-group{margin-bottom:18px}label{display:block;font-weight:600;margin-bottom:8px;font-size:14px;color:#444}input,select,textarea{width:100%;padding:12px;border:1.5px solid #ccc;border-radius:8px;box-sizing:border-box;font-size:16px;-webkit-appearance:none}input:focus,select:focus,textarea:focus{border-color:#8B0000;outline:none;box-shadow:0 0 5px rgba(139,0,0,.2)}.hidden{display:none}button{width:100%;padding:15px;background:#8B0000;color:#fff;border:0;border-radius:8px;font-size:18px;font-weight:bold;cursor:pointer}button:disabled{opacity:.65}.footer{text-align:center;font-size:12px;color:#999;margin:20px 0}</style>
 </head>
 <body>
-
+<div class="header">SISTEM NIKAH ANAK MUKIM</div>
 <div class="container">
-    <h2>Sistem Pengurusan Rekod Nikah</h2>
-    <form id="nikahForm">
-        <div class="form-group">
-            <label>Nama Suami:</label>
-            <input type="text" id="namaSuami" required placeholder="Masukkan nama penuh suami">
-        </div>
-        <div class="form-group">
-            <label>Nama Isteri:</label>
-            <input type="text" id="namaIsteri" required placeholder="Masukkan nama penuh isteri">
-        </div>
-        <div class="form-group">
-            <label>Tarikh Nikah:</label>
-            <input type="date" id="tarikhNikah" required>
-        </div>
-        <div class="form-group">
-            <label>No. Sijil / Rujukan:</label>
-            <input type="text" id="noSijil" required placeholder="Contoh: NK-2026-001">
-        </div>
-        <button type="submit">Simpan Rekod</button>
-    </form>
+<form id="nikahForm">
+<div class="form-group"><label>📅 Tarikh Nikah</label><input type="date" name="tarikh" required></div>
+<div class="form-group"><label>🗓️ Hari</label><select name="hari" required><option value="" disabled selected>-- Sila Pilih Hari --</option><option>Ahad</option><option>Isnin</option><option>Selasa</option><option>Rabu</option><option>Khamis</option><option>Jumaat</option><option>Sabtu</option></select></div>
+<div class="form-group"><label>⏰ Masa Nikah</label><input type="time" name="masa" required></div>
+<div class="form-group"><label>👤 Nama Pengantin</label><input type="text" name="nama" placeholder="Nama Penuh Pengantin" required></div>
+<div class="form-group"><label>🏡 Kampung</label><select name="kampung" id="kampung" required><option value="" disabled selected>-- Sila Pilih Kampung --</option><option>Surau</option><option>B12</option><option>Pondok</option><option>Banggol Kuin</option><option>Mengkirim</option><option>Alor Lenggak</option><option>Gebeng</option><option>Lubok Kawah Dalam</option><option>Pak Jak</option><option>Lumpur</option><option>Machang Bubuk</option><option value="Lain-lain">Lain-lain (Nyatakan)</option></select></div>
+<div id="k_lain" class="form-group hidden"><input type="text" name="kampung_lain" placeholder="Tulis Nama Kampung"></div>
+<div class="form-group"><label>📍 Tempat Nikah</label><select name="tempat" id="tempat" required><option value="" disabled selected>-- Sila Pilih Lokasi --</option><option>Masjid Mukim</option><option>Masjid Pondok</option><option>Rumah</option><option>Dewan</option><option>Balaisah Pak Jak</option><option>Balaisah Gebeng</option><option>Balaisah Lubok Kawah Dalam</option><option value="Lain-lain">Lain-lain (Nyatakan)</option></select></div>
+<div id="t_lain" class="form-group hidden"><input type="text" name="tempat_lain" placeholder="Tulis Lokasi Nikah"></div>
+<div class="form-group"><label>📞 No. Telefon (WhatsApp)</label><input type="tel" name="tel" placeholder="Contoh: 0123456789" required></div>
+<div class="form-group"><label>🤝 Jenis Wali</label><select name="wali" required><option value="" disabled selected>-- Sila Pilih Wali --</option><option>Bapa</option><option>Datuk</option><option>Adik-beradik lelaki seibu sebapa</option><option>Adik-beradik lelaki sebapa sahaja</option><option>Anak saudara lelaki seibu sebapa</option><option>Anak saudara lelaki sebapa sahaja</option><option>Bapa saudara sebelah bapa (seibu sebapa)</option><option>Bapa saudara sebelah bapa (sebapa sahaja)</option><option>Sepupu lelaki seibu sebapa</option><option>Sepupu lelaki sebapa sahaja</option><option>Wali Sultan</option></select></div>
+<div class="form-group"><label>📝 Catatan Tambahan</label><textarea name="catatan" rows="3" placeholder="Contoh: Majlis bermula selepas Zohor..."></textarea></div>
+<button type="submit" id="btn">HANTAR PENDAFTARAN</button>
+</form>
+<div class="footer">Sistem Pengurusan Nikah Mukim © 2026</div>
 </div>
-
-<script>
-    document.getElementById('nikahForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Data berjaya direkodkan! (Sistem siap untuk diintegrasikan dengan Firebase)');
-    });
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js';
+import{getFirestore,collection,doc,runTransaction,serverTimestamp}from'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
+const firebaseConfig = {
+  apiKey: "AIzaSyBflySl7ok21",
+  authDomain: "sistem-rekod-nikah.firebaseapp.com",
+  projectId: "sistem-rekod-nikah",
+  storageBucket: "sistem-rekod-nikah.firebasestorage.app",
+  messagingSenderId: "473243104741",
+  appId: "1:473243104741:web:be6dcfbe86256753beeb0c"
+};
+const db=getFirestore(initializeApp(firebaseConfig)),form=document.getElementById('nikahForm'),btn=document.getElementById('btn');
+function toggleBox(s,id,n){const b=document.getElementById(id),i=form.elements[n],show=s.value==='Lain-lain';b.style.display=show?'block':'none';i.required=show;if(!show)i.value=''}
+kampung.addEventListener('change',e=>toggleBox(e.target,'k_lain','kampung_lain'));tempat.addEventListener('change',e=>toggleBox(e.target,'t_lain','tempat_lain'));
+function formatMasa(v){const[h,m]=v.split(':').map(Number),j=((h+11)%12)+1,s=h>=19?'malam':h>=12?'petang':'pagi';return String(j).padStart(2,'0')+':'+String(m).padStart(2,'0')+' '+s}
+const warna=['#ff9999','#99c2ff','#b3ffb3','#ffff99','#e6b3ff','#ffd9b3','#c2f0f0','#d9d9d9','#ffccff','#ccffcc','#ffe6cc','#cccccc'];
+form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;btn.disabled=true;btn.textContent='Sedang Menghantar...';const f=Object.fromEntries(new FormData(form));try{await runTransaction(db,async tx=>{const s=doc(db,'sistem','statistik'),snap=await tx.get(s),bilangan=(snap.exists()?Number(snap.data().jumlah)||0:0)+1,r=doc(collection(db,'rekod_nikah'));tx.set(r,{bilangan,tarikh:f.tarikh,hari:f.hari,masa:formatMasa(f.masa),masaAsal:f.masa,nama:f.nama.trim(),kampung:f.kampung==='Lain-lain'?f.kampung_lain.trim():f.kampung,tempat:f.tempat==='Lain-lain'?f.tempat_lain.trim():f.tempat,tel:f.tel.trim(),wali:f.wali,catatan:(f.catatan||'').trim(),warnaTarikh:warna[new Date(f.tarikh+'T00:00:00').getMonth()],tarikhSusun:f.tarikh,diciptaPada:serverTimestamp()});tx.set(s,{jumlah:bilangan,dikemasKiniPada:serverTimestamp()},{merge:true})});Swal.fire({title:'BERJAYA!',text:'Alhamdulillah, Rekod anda telah berjaya disimpan',icon:'success',confirmButtonColor:'#28a745'});form.reset();k_lain.style.display='none';t_lain.style.display='none'}catch(err){console.error(err);Swal.fire({title:'RALAT!',text:'Rekod tidak dapat disimpan. Sila cuba lagi.',icon:'error',confirmButtonColor:'#8B0000'})}finally{btn.disabled=false;btn.textContent='HANTAR PENDAFTARAN'}});
 </script>
-
 </body>
 </html>
